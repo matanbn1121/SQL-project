@@ -1,20 +1,70 @@
-CREATE DATABASE IF NOT EXISTS SLR_DataBase;
-use slr_database;
+CREATE DATABASE IF NOT EXISTS SQL_slr_Project;
+use SQL_slr_Project;
 
--- טבלת עובדים
-create table Employeesdepartments(
-employees_id INT NOT NULL auto_increment primary key,
-first_name varchar(50) not null,
-last_name varchar(50) not null,
-gender enum('male','female') not null,
-address varchar(100) not null,
-phone char(10),
-email VARCHAR(100) NOT NULL UNIQUE,
-start_date date not null,
-position_id int NOT NULL,
-salary DECIMAL(10) NOT NULL,
-department_id int not null
+-- Client Table
+create table clients (
+client_id int not null auto_increment primary key,
+client_name varchar(200),
+client_entry_date date,
+client_address_id int,
+foreign key(client_address_id) references address(address_id) on delete cascade,
+client_phone varchar(50),
+client_email VARCHAR(100) UNIQUE not null,
+client_password varchar(50),
+client_company_registration date
 );
+
+-- Address Table
+create table address(
+address_id int not null auto_increment primary key,
+city varchar(50),
+street varchar(100),
+building_number int,
+postal_code int,
+additional_info varchar(200),
+country varchar(100)
+);
+
+-- Knives Table
+create table knives (
+knives_id int not null auto_increment primary key,
+knives_dimensions varchar(50),
+knives_stock boolean,
+need_to_order boolean,
+sent_for_repair boolean
+);
+
+
+-- Engravings Table
+create table engravings (
+engravings_id int not null auto_increment primary key,
+engravings_name varchar(50) unique not null,
+engravings_description varchar(100)
+);
+
+-- Materials Table
+create table materials (
+materials_id int not null auto_increment primary key,
+material_description varchar(200),
+material_width int
+);
+
+create table sticker (
+sticker_id int not null auto_increment primary key,
+client_id int,
+sticker_name varchar(100),
+sticker_price int,
+order_id int,
+foreign key(client_id) references clients(client_address_id) on delete cascade
+);
+
+
+
+
+
+
+
+
 
 select * from employees;
 
@@ -37,37 +87,8 @@ department_id int not null auto_increment primary key,
 description varchar(50) not null
 );
 
--- טבלת לקוחות
-create table customers (
-customer_id int not null auto_increment primary key,
-customer_name varchar(200),
-entry_date date);
 
--- טבלת חומרי גלם
-create table materials (
-materials_id int not null auto_increment primary key,
-material_description varchar(200),
-material_width int,
-material_pet boolean
-);
 
--- טבלת סכינים
-create table knives (
-knives_id int not null auto_increment primary key,
-knives_dimensions varchar(50),
-materials_id int,
-foreign key(materials_id) references materials(materials_id) on delete cascade,
-in_stock boolean,
-need_to_order boolean,
-sent_for_repair boolean
-);
-
--- טבלת גלופות
-create table engravings (
-engravings_id int not null auto_increment primary key,
-engravings_name varchar(50) unique not null,
-engravings_description varchar(100)
-);
 
 -- טבלת הזמנות
 create table orders (
