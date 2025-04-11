@@ -59,11 +59,32 @@ foreign key(client_id) references clients(client_address_id) on delete cascade
 );
 
 
+CREATE TABLE orders(
+order_id int not null auto_increment primary key,
+order_date DATE,
+delivery_date DATE,
+order_arrival_date DATE,
+order_praises VARCHAR(30),
+order_sticker_quantity TINYINT,
+client_id INT,
+knives_id INT,
+engravings_id INT,
+sticker_id INT,
+materials_id INT,
+FOREIGN KEY (client_id) REFERENCES clients(client_id),
+FOREIGN KEY (knives_id) REFERENCES knives(knives_id),
+FOREIGN KEY (engravings_id) REFERENCES engravings(engravings_id),
+FOREIGN KEY (sticker_id) REFERENCES sticker(sticker_id),
+FOREIGN KEY (materials_id) REFERENCES materials(materials_id)
+);
 
 
 
 
 
+
+-- בדיקה
+-- בדיקה
 
 
 select * from employees;
