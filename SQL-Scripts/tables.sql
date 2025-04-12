@@ -83,8 +83,6 @@ FOREIGN KEY (materials_id) REFERENCES materials(materials_id)
 
 
 
--- בדיקה
--- בדיקה
 
 
 select * from employees;
