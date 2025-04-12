@@ -14,9 +14,9 @@ const Register: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Registering user:', formData);
+        console.log('Registering client:', formData);
         // Add your registration logic here (e.g., API call)
-        fetch('http://localhost:3000/api/users/register', {
+        fetch('http://localhost:3000/api/register', {
             method: 'POST',
             credentials: 'include',
             headers: {

@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS SQL_slr_Project;
-use SQL_slr_Project;
+use sql_slr_Project;
 
 -- Client Table
 create table clients (
@@ -13,6 +13,17 @@ client_email VARCHAR(100) UNIQUE not null,
 client_password varchar(50),
 client_company_registration date
 );
+
+insert into clients (client_user_name, client_email, client_password) values
+('dalton','dalton@gmail.com','123');
+
+select * from clients;
+
+alter table clients
+change column client_password client_password varchar(200);
+
+alter table clients
+change column client_user client_user_name varchar(50);
 
 -- Address Table
 create table address(
@@ -49,13 +60,20 @@ material_description varchar(200),
 material_width int
 );
 
+insert into materials (material_description, material_width) values
+('Sable', '250');
+
+select * from materials;
+
+
 create table sticker (
 sticker_id int not null auto_increment primary key,
 client_id int,
 sticker_name varchar(100),
 sticker_price int,
 order_id int,
-foreign key(client_id) references clients(client_address_id) on delete cascade
+foreign key(client_id) references clients(client_id) on delete cascade,
+foreign key(order_id) references orders(order_id) on delete cascade
 );
 
 
@@ -64,68 +82,25 @@ order_id int not null auto_increment primary key,
 order_date DATE,
 delivery_date DATE,
 order_arrival_date DATE,
-order_praises VARCHAR(30),
-order_sticker_quantity TINYINT,
+order_feedback VARCHAR(30),
+order_sticker_quantity INT,
 client_id INT,
 knives_id INT,
 engravings_id INT,
-sticker_id INT,
 materials_id INT,
 FOREIGN KEY (client_id) REFERENCES clients(client_id),
 FOREIGN KEY (knives_id) REFERENCES knives(knives_id),
 FOREIGN KEY (engravings_id) REFERENCES engravings(engravings_id),
-FOREIGN KEY (sticker_id) REFERENCES sticker(sticker_id),
 FOREIGN KEY (materials_id) REFERENCES materials(materials_id)
 );
 
+alter table orders
+add column sticker_id int;
 
+alter table orders
+ADD FOREIGN KEY (sticker_id) REFERENCES sticker(sticker_id);
 
-
-
-
--- בדיקה
--- בדיקה
-
-
-select * from employees;
-
--- קשרתי את המזהה מחלקה לטבלת מחלקות
-alter table employees
-add constraint fk_department_id
-foreign key (department_id)
-references departments(department_id)
-on delete cascade;
-
--- תפקידים בעבודה
-create table positions (
-position_id int not null auto_increment primary key,
-description varchar(50) not null
-);
-
--- מחלקות בעבודה
-create table departments (
-department_id int not null auto_increment primary key,
-description varchar(50) not null
-);
-
-
-
-
--- טבלת הזמנות
-create table orders (
-order_id int not null auto_increment primary key,
-customer_id int,
-foreign key(customer_id) references customers(customer_id) on delete cascade,
-order_date date not null,
-delivery_date date not null,
-praises enum('Gloss varnish', 'Matte varnish', 'Matte lamination', 'Glossy lamination' ,
-'Embossing and debossing', 'Foil stampin only', 'Silk screen'),
-knives_id int,
-foreign key(knives_id) references knives(knives_id) on delete cascade,
-engravings_id int,
-foreign key(engravings_id) references engravings(engravings_id) on delete cascade
-);
-
+select * from clients;
 
 
 

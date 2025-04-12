@@ -12,7 +12,7 @@ const Login: React.FC = () => {
         e.preventDefault();
         console.log('Login submitted:', { email, password });
     
-        fetch('http://localhost:3000/api/users/login', {
+        fetch('http://localhost:3000/api/login', {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -27,7 +27,7 @@ const Login: React.FC = () => {
             if (response.status === 200) {
                 console.log('Login successful:', data);
                 alert('Login successful');
-                navigate('/store');
+                navigate('/orders');
            
             } else {
                 console.error('Login failed:', data);
