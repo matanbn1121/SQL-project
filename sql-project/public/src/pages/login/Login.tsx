@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 import useLoginVm from "./LoginVM";
 
 const Login = () => {
-  const { handleBackClick, handleLogin } = useLoginVm();
+  const { handleBackClick, handleLogin, email, setEmail, password, setPassword, handleSubmit } = useLoginVm();
 
   return (
     <div className={styles.login}>
@@ -17,10 +17,11 @@ const Login = () => {
         <img src={logo} alt="לוגו" className={styles.logo} />
         <h2 className={styles.title}>התחברות</h2>
 
-        <form className={styles.form}>
-          <input className={styles.input} type="email" name="email" placeholder="אימייל" required />
-          <input className={styles.input} type="password" name="password" placeholder="סיסמה" required />
-          <Button onClick={handleLogin} text="התחברות" />
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <input className={styles.input} onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" placeholder="אימייל" required />
+          <input className={styles.input}  onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" placeholder="סיסמה" required />
+          <button>התחבר</button>
+          {/* <Button onClick={handleLogin} text="התחברות" /> */}
         </form>
       </div>
     </div>
