@@ -25,7 +25,7 @@ const Register = () => {
           <input className={styles.input} type="email" name="email" placeholder="אימייל" required />
           <input className={styles.input} type="password" name="password" placeholder="סיסמה" required />
           <input className={styles.input} type="password" name="confirm_password" placeholder="אישור סיסמה" required />
-          <Button text="צור חשבון" />
+          <Button onClick={()=> navigate("/login")} text="צור חשבון" />
         </form>
       </div>
     </div>
