@@ -1,4 +1,4 @@
-.login {
+.addOrder {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -6,9 +6,10 @@
     align-items: center;
     background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     font-family: 'Segoe UI', sans-serif;
+    text-align: right;
   }
   
-  .login_nav {
+  .addOrder_nav {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +18,9 @@
     padding: 40px 50px;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    width: 320px;
+    width: 400px;
+    max-height: 80%;
+    overflow-y: auto;
   }
   
   .logo {
@@ -41,7 +44,7 @@
   
   .input {
     padding: 10px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #8f8e8e;
     border-radius: 8px;
     font-size: 14px;
     width: 100%;
@@ -51,6 +54,12 @@
     background-color: #cecece;
   }
   
+  .label {
+    font-size: 16px;
+    font-weight:100;
+    margin-bottom: 5px;
+    color: #a1a1a1;
+  }
   .back {
     align-self: flex-start;
     background: none;
@@ -65,5 +74,20 @@
   
   .back:hover {
     color: #0056b3;
+  }
+  
+  button[type="submit"] {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
   }
   

@@ -1,7 +1,7 @@
 
 import styles from "./login.module.scss";
 import logo from "../../assets/logo_he.png";
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button";
 import useLoginVm from "./LoginVM";
 
 const Login = () => {

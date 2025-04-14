@@ -1,20 +1,20 @@
 import { useNavigate } from "react-router-dom";
 
-const useLoginVM = () => {
+const useMainVM = () => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
     navigate("/");
   };
 
-  const handleLogin = () => {
-    navigate("/mainPage");
+  const handleRegister = () => {
+    navigate("/login");
   };
 
   return {
     handleBackClick,
-    handleLogin,
+    handleRegister,
   };
 };
 
-export default useLoginVM;
+export default useMainVM;

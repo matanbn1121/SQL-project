@@ -1,7 +1,7 @@
 // Register.tsx
 import styles from "./register.module.scss";
 import logo from "../../assets/logo_he.png";
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button";
 import useRegisterVm from "./RegisterVM";
 
 const Register = () => {

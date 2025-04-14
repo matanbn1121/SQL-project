@@ -1,4 +1,4 @@
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button";
 import styles from "./home.module.scss";
 import logo from "../../assets/logo_he.png";
 import { useHomeVM } from "./homeVM";

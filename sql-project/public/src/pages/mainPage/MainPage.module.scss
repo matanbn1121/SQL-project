@@ -1,0 +1,60 @@
+.mainPage {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  
+  .logo {
+    width: 180px;
+    height: auto;
+  }
+  
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .back {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #007bff;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+  }
+  
+  .back:hover {
+    color: #0056b3;
+  }
+  
+  .mainPage_content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+  
+  .loading,
+  .error {
+    font-size: 18px;
+    color: #ff6347;
+  }
+  
+  .orderList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
