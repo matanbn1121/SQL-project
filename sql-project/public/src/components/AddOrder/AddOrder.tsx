@@ -9,7 +9,20 @@ const AddOrder = () => {
     handleSubmit,
     formData,
     handleInputChange,
+    materials,
+    setMaterials,
+    selectedMaterialId,
+    setSelectedMaterialId,
+    sticker_finish,
+    set_sticker_finish,
+    selected_sticker_finesh,
+    set_selected_sticker_finesh,
+    date,
+    setDate,
   } = useAddOrderVM();
+  console.log(date);
+  console.log(selectedMaterialId);
+  console.log(selected_sticker_finesh)
 
   return (
     <div className={styles.addOrder}>
@@ -22,7 +35,7 @@ const AddOrder = () => {
         <h2 className={styles.title}>הוספת הזמנה חדשה</h2>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
+          {/* <div className={styles.inputGroup}>
             <label htmlFor="client_id" className={styles.label}>מספר לקוח</label>
             <input
               className={styles.input}
@@ -32,9 +45,9 @@ const AddOrder = () => {
               onChange={handleInputChange}
               required
             />
-          </div>
+          </div> */}
 
-          <div className={styles.inputGroup}>
+          {/* <div className={styles.inputGroup}>
             <label htmlFor="order_date" className={styles.label}>תאריך הזמנה</label>
             <input
               className={styles.input}
@@ -44,65 +57,36 @@ const AddOrder = () => {
               value={formData.order_date}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
 
           <div className={styles.inputGroup}>
-            <label htmlFor="delivery_date" className={styles.label}>תאריך אספקה</label>
+            <label htmlFor="delivery_date" className={styles.label}>
+              למתי צריך את המדבקות?
+            </label>
             <input
               className={styles.input}
               name="delivery_date"
               id="delivery_date"
               type="date"
-              value={formData.delivery_date}
-              onChange={handleInputChange}
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="praises" className={styles.label}>הערות</label>
+            <label htmlFor="knives_id" className={styles.label}>
+              מידת מדבקות
+            </label>
             <input
               className={styles.input}
-              name="praises"
-              id="praises"
-              value={formData.praises}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="knives_id" className={styles.label}>מזהה סכין</label>
-            <input
-              className={styles.input}
-              name="knives_id"
+              name="knives_id" /* לשנות */
               id="knives_id"
               value={formData.knives_id}
               onChange={handleInputChange}
             />
           </div>
 
-          <div className={styles.inputGroup}>
-            <label htmlFor="engravings_id" className={styles.label}>מזהה חריטה</label>
-            <input
-              className={styles.input}
-              name="engravings_id"
-              id="engravings_id"
-              value={formData.engravings_id}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label htmlFor="sticker_id" className={styles.label}>מזהה מדבקה</label>
-            <input
-              className={styles.input}
-              name="sticker_id"
-              id="sticker_id"
-              value={formData.sticker_id}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
+          {/* <div className={styles.inputGroup}>
             <label htmlFor="arrival_date" className={styles.label}>תאריך הגעה</label>
             <input
               className={styles.input}
@@ -112,10 +96,12 @@ const AddOrder = () => {
               value={formData.arrival_date}
               onChange={handleInputChange}
             />
-          </div>
+          </div> */}
 
           <div className={styles.inputGroup}>
-            <label htmlFor="sticker_quantity" className={styles.label}>כמות מדבקות</label>
+            <label htmlFor="sticker_quantity" className={styles.label}>
+              כמות מדבקות
+            </label>
             <input
               className={styles.input}
               name="sticker_quantity"
@@ -126,30 +112,64 @@ const AddOrder = () => {
             />
           </div>
 
-          <div className={styles.inputGroup}>
-            <label htmlFor="knives_quantity" className={styles.label}>כמות סכינים</label>
+          {/* <div className={styles.inputGroup}>
+            <label htmlFor="engravings_id" className={styles.label}>תרצה צפוי מיוחד על המדבקות?</label>
             <input
               className={styles.input}
-              name="knives_quantity"
-              id="knives_quantity"
-              type="number"
-              value={formData.knives_quantity}
+              name="engravings_id"
+              id="engravings_id"
+              value={formData.engravings_id}
+              onChange={handleInputChange}
+            />
+          </div> */}
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="sticker_finesh" className={styles.label}>
+            תרצה צפוי על המדבקות?
+            </label>
+            <select onChange={(e) => set_selected_sticker_finesh(e.target.value)}>
+              {sticker_finish.map((sf: any) => (
+                <option
+                  key={sf.sticker_finesh_id}
+                  value={sf.sticker_finesh_id}
+                >
+                  {sf.sticker_finesh_description}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="materials_type" className={styles.label}>
+              סוג חומר
+            </label>
+            <select onChange={(e) => setSelectedMaterialId(e.target.value)}>
+              {materials.map((material: any) => (
+                <option
+                  key={material.materials_id}
+                  value={material.materials_id}
+                >
+                  {material.material_description} - {material.material_width}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label htmlFor="praises" className={styles.label}>
+              הערות
+            </label>
+            <input
+              className={styles.input}
+              name="praises"
+              id="praises"
+              value={formData.praises}
               onChange={handleInputChange}
             />
           </div>
 
-          <div className={styles.inputGroup}>
-            <label htmlFor="materials_type" className={styles.label}>סוג חומר</label>
-            <input
-              className={styles.input}
-              name="materials_type"
-              id="materials_type"
-              value={formData.materials_type}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <Button type="submit" text="הוסף הזמנה" />
+          <button>הוסף הזמנה</button>
+          {/* <Button type="submit" text="הוסף הזמנה" /> */}
         </form>
       </div>
     </div>

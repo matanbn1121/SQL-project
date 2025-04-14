@@ -14,8 +14,8 @@ client_password varchar(50),
 client_company_registration date
 );
 
-insert into clients (client_firstName, client_email, client_password) values
-('dalton','dalton@gmail.com','123');
+insert into clients (client_firstName, client_lastName, client_company_name, client_address, client_phone, client_password, client_email) values
+('yosef','ibrahim','abu avi', 'al rashid 9', '0545732050', '123', 'xxx@777.com');
 
 select * from clients;
 
@@ -23,7 +23,7 @@ alter table clients
 add column client_address varchar(200);
 
 ALTER TABLE clients
-DROP COLUMN client_user;
+DROP COLUMN client_company_registration;
 
 
 -- Address Table
