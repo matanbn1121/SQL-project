@@ -21,7 +21,7 @@ export const loginClient: RequestHandler = async (req, res) => {
         console.log(clients);
 
         if (clients.length === 0) {
-            res.status(401).json({ message: 'Invalid credentials' });
+            res.status(401).json({ message: 'The email is incorrect' });
             return;
         }
 
@@ -30,7 +30,7 @@ export const loginClient: RequestHandler = async (req, res) => {
         // Compare passwords
         const isMatch = await bcrypt.compare(password, client.client_password);
         if (!isMatch) {
-            res.status(401).json({ message: 'Invalid credentials' });
+            res.status(401).json({ message: 'The password is incorrect' });
             return;
         }
 
