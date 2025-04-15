@@ -13,14 +13,15 @@ function useLoginVM() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include", 
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({   client_email: email,
+          client_password: password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
         console.log("התחברת בהצלחה:", data);
-        navigate("/main");
+        window.location.href = "/mainPage"; 
       } else {
         alert(data.message || "אימייל או סיסמה שגויים");
       }
