@@ -12,7 +12,6 @@ export const register = async (req: Request, res: Response) => {
     client_password,
     client_entry_date,
     client_phone,
-    client_address_id 
   } = req.body;
 
   try {
@@ -21,9 +20,9 @@ export const register = async (req: Request, res: Response) => {
     const [result]: any = await pool.execute(
       `INSERT INTO clients (
         client_name, client_email, client_password,
-        client_entry_date, client_phone, client_address_id
-      ) VALUES (?, ?, ?, ?, ?, ?)`,
-      [client_name, client_email, hashed, client_entry_date, client_phone, client_address_id]
+        client_entry_date, client_phone
+      ) VALUES (?, ?, ?, ?, ?)`,
+      [client_name, client_email, hashed, client_entry_date, client_phone, ]
     );
 
     const token = jwt.sign(
