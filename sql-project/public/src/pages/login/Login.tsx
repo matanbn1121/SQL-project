@@ -1,11 +1,15 @@
 
 import styles from "./login.module.scss";
 import logo from "../../assets/logo_he.png";
-import Button from "../../components/Button/Button";
-import useLoginVm from "./LoginVM";
+import Button from "../../components/Button";
+import { useState } from "react";
+import useLoginVM from "./LoginVM";
 
 const Login = () => {
-  const { handleBackClick, handleLogin } = useLoginVm();
+  const { handleBackClick, handleLogin } = useLoginVM();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className={styles.login}>
@@ -17,11 +21,25 @@ const Login = () => {
         <img src={logo} alt="לוגו" className={styles.logo} />
         <h2 className={styles.title}>התחברות</h2>
 
-        <form className={styles.form}>
-          <input className={styles.input} type="email" name="email" placeholder="אימייל" required />
-          <input className={styles.input} type="password" name="password" placeholder="סיסמה" required />
-          <Button onClick={handleLogin} text="התחברות" />
-        </form>
+        <div className={styles.form}>
+          <input
+            className={styles.input}
+            type="email"
+            placeholder="אימייל"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="סיסמה"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button text="התחברות" onClick={() => handleLogin(email, password)} />
+        </div>
       </div>
     </div>
   );
