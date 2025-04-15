@@ -5,6 +5,7 @@ import useAddOrderVM from "./AddOrderVM";
 
 const AddOrder = () => {
   const {
+    clientId,
     handleBackClick,
     handleSubmit,
     formData,
@@ -23,6 +24,7 @@ const AddOrder = () => {
   console.log(date);
   console.log(selectedMaterialId);
   console.log(selected_sticker_finesh)
+  console.log("client id is :" + clientId)
 
   return (
     <div className={styles.addOrder}>
@@ -32,6 +34,7 @@ const AddOrder = () => {
         </button>
 
         <img src={logo} alt="לוגו" className={styles.logo} />
+        <p>Welcome Back {clientId?.[0]?.client_company_name || "משתמש"}</p>
         <h2 className={styles.title}>הוספת הזמנה חדשה</h2>
 
         <form className={styles.form} onSubmit={handleSubmit}>

@@ -18,6 +18,7 @@ interface OrderFormData {
 
 const useAddOrderVM = () => {
   const navigate = useNavigate();
+  const [clientId, setClientId] = useState([]);
   const [materials, setMaterials] = useState([]);
   const [selectedMaterialId, setSelectedMaterialId] = useState("");
 
@@ -26,6 +27,25 @@ const useAddOrderVM = () => {
   const [date, setDate] = useState("");
 
   useEffect(() => {
+    const fetchClientId = async () => {
+      try{
+        const response = await fetch(
+            "http://localhost:3000/api/fetchClientId",{
+               credentials: 'include'
+            }
+        );
+        console.log("123")
+        if (!response.ok) throw new Error("Failed to fetch clientId");
+
+        const data = await response.json();
+        setClientId(data.result)
+        console.log("Client Deatils:", data.result);
+
+      }
+      catch (error){
+        console.error("error fetching clientId", error);
+      }
+    }
     const fetchMaterials = async () => {
       try {
         const response = await fetch(
@@ -56,7 +76,7 @@ const useAddOrderVM = () => {
       }
     };
 
-    fetch_sticker_finesh(),fetchMaterials();
+    fetch_sticker_finesh(),fetchMaterials(),fetchClientId();
   }, []);
 
   const [formData, setFormData] = useState<OrderFormData>({
@@ -100,7 +120,8 @@ const useAddOrderVM = () => {
     selectedMaterialId, setSelectedMaterialId,
     sticker_finish, set_sticker_finish,
     selected_sticker_finesh, set_selected_sticker_finesh,
-    date, setDate
+    date, setDate,
+    clientId
   };
 };
 

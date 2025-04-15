@@ -6,7 +6,7 @@ export const fetchMaterials: RequestHandler = async (req, res) => {
             'select * from materials',
         );
 
-        console.log("results", result);
+        // console.log("results", result);
         res.status(200).json({
             success: true,
             message: 'show all products',

@@ -6,7 +6,7 @@ export const fetch_sticker_finesh: RequestHandler = async (req, res) => {
             'select * from sticker_finish',
         );
 
-        console.log("results", result);
+        // console.log("results", result);
         res.status(200).json({
             success: true,
             message: 'show all sticker_finish',

@@ -18,6 +18,7 @@ export const loginClient: RequestHandler = async (req, res) => {
         const [rows] = await pool.execute('SELECT * FROM clients WHERE client_email = ?', [email]);
         const clients = rows as any[];
 
+        console.log("detils from login function:")
         console.log(clients);
 
         if (clients.length === 0) {

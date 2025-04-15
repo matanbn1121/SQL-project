@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from 'cors';
 import mainRoutes from './Routes/mainRoutes';
 export type RequestHandler = (req: Request, res: Response) => Promise<void> | void;
+import cookieParser from 'cookie-parser';
 dotenv.config()
 
 // Create the Express application
@@ -19,6 +20,7 @@ app.use(cors({
 // Configure middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Create MySQL connection pool
 export const pool = mysql.createPool({

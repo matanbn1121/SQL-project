@@ -31,7 +31,7 @@ const MainPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:3001/orders");
+        const response = await fetch("http://localhost:3000/orders");
         if (!response.ok) throw new Error("בעיה בטעינת ההזמנות");
         const data = await response.json();
         setOrders(data);
