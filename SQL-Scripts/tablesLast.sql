@@ -19,6 +19,42 @@ insert into clients (client_firstName, client_lastName, client_company_name, cli
 
 select * from clients;
 
+select * from orders;
+
+    SELECT 
+    o.order_date,
+    o.delivery_date,
+    o.order_feedback,
+    o.order_sticker_quantity,
+    m.material_description
+FROM
+    orders o
+JOIN
+    materials m ON m.materials_id = o.materials_id;
+
+
+-     SELECT 
+--     e.first_name,
+--     e.last_name,
+--     e.phone,
+--     d.description AS department_description,
+--     p.description AS position_description
+-- FROM
+--     employees e
+-- JOIN
+--     departments d ON e.department_id = d.department_id
+-- JOIN
+--     positions p ON e.position_id = p.position_id
+-- WHERE
+--     p.position_id = 3;
+
+
+insert into orders (order_date, delivery_date,order_feedback, order_sticker_quantity, client_id, materials_id) values
+('2025-03-03','2025-04-01',"its was fantastic", 500,7,1);
+
+select * from clients
+where client_id = 15;
+
 alter table clients
 add column client_address varchar(200);
 

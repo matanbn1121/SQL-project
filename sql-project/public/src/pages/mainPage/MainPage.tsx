@@ -31,10 +31,12 @@ const MainPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:3000/orders");
+        const response = await fetch("http://localhost:3000/api/fetchOrdersByClient");
         if (!response.ok) throw new Error("בעיה בטעינת ההזמנות");
         const data = await response.json();
-        setOrders(data);
+        setOrders(data.result);
+        console.log("hzmnot")
+        console.log(data)
       } catch (err: any) {
         setError(err.message || "שגיאה לא צפויה");
       } finally {
