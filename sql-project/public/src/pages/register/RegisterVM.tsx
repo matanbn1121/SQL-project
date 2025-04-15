@@ -1,20 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Client } from "../../model/userModel";
 
-const useRegisterVM = () => {
-  const navigate = useNavigate();
+export function useRegisterVM() {
+  const [client, setClient] = useState<Client | null>(
+);
 
-  const handleBackClick = () => {
-    navigate("/");
-  };
-
-  const handleRegister = () => {
-    navigate("/login");
-  };
-
-  return {
-    handleBackClick,
-    handleRegister,
-  };
-};
-
-export default useRegisterVM;
+}

@@ -2,15 +2,13 @@
 import styles from "./register.module.scss";
 import logo from "../../assets/logo_he.png";
 import Button from "../../components/Button";
-import useRegisterVm from "./RegisterVM";
 
 const Register = () => {
-  const { handleBackClick, handleRegister } = useRegisterVm();
 
   return (
     <div className={styles.register}>
       <div className={styles.register_nav}>
-        <button onClick={handleBackClick} className={styles.back}>
+        <button  className={styles.back}>
           ← חזור
         </button>
 
@@ -26,7 +24,7 @@ const Register = () => {
           <input className={styles.input} type="email" name="email" placeholder="אימייל" required />
           <input className={styles.input} type="password" name="password" placeholder="סיסמה" required />
           <input className={styles.input} type="password" name="confirm_password" placeholder="אישור סיסמה" required />
-          <Button onClick={handleRegister} text="צור חשבון" />
+          <Button  text="צור חשבון" />
         </form>
       </div>
     </div>
