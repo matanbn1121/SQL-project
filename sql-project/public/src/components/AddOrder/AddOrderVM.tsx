@@ -25,6 +25,9 @@ const useAddOrderVM = () => {
   const [sticker_finish, set_sticker_finish] = useState([]);
   const [selected_sticker_finesh, set_selected_sticker_finesh] = useState("");
   const [date, setDate] = useState("");
+  console.log(date)
+  console.log(selectedMaterialId)
+  console.log(selected_sticker_finesh)
 
   useEffect(() => {
     const fetchClientId = async () => {
@@ -34,12 +37,10 @@ const useAddOrderVM = () => {
                credentials: 'include'
             }
         );
-        console.log("123")
         if (!response.ok) throw new Error("Failed to fetch clientId");
 
         const data = await response.json();
         setClientId(data.result)
-        console.log("Client Deatils:", data.result);
 
       }
       catch (error){
@@ -55,7 +56,6 @@ const useAddOrderVM = () => {
 
         const data = await response.json();
         setMaterials(data.result);
-        console.log("Materials list:", data.result);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -70,7 +70,6 @@ const useAddOrderVM = () => {
 
         const data = await response.json();
         set_sticker_finish(data.result);
-        console.log("sticker finesh list:", data.result);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -78,6 +77,11 @@ const useAddOrderVM = () => {
 
     fetch_sticker_finesh(),fetchMaterials(),fetchClientId();
   }, []);
+
+  function set_new_order ()
+  {
+    
+  }
 
   const [formData, setFormData] = useState<OrderFormData>({
     order_id: "",
@@ -108,7 +112,7 @@ const useAddOrderVM = () => {
 
     console.log("Order added:", formData);
 
-    navigate("/orders");
+    // navigate("/orders");
   };
 
   return {

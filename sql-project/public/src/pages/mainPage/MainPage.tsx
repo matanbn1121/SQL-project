@@ -35,8 +35,6 @@ const MainPage = () => {
         if (!response.ok) throw new Error("בעיה בטעינת ההזמנות");
         const data = await response.json();
         setOrders(data.result);
-        console.log("hzmnot")
-        console.log(data)
       } catch (err: any) {
         setError(err.message || "שגיאה לא צפויה");
       } finally {

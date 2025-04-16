@@ -21,10 +21,6 @@ const AddOrder = () => {
     date,
     setDate,
   } = useAddOrderVM();
-  console.log(date);
-  console.log(selectedMaterialId);
-  console.log(selected_sticker_finesh)
-  console.log("client id is :" + clientId)
 
   return (
     <div className={styles.addOrder}>
