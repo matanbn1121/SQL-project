@@ -22,6 +22,8 @@ select * from clients;
 select * from orders;
 
     SELECT 
+    c.client_id,
+    o.order_id,
     o.order_date,
     o.delivery_date,
     o.order_feedback,
@@ -30,10 +32,12 @@ select * from orders;
 FROM
     orders o
 JOIN
-    materials m ON m.materials_id = o.materials_id;
+    materials m ON m.materials_id = o.materials_id
+JOIN
+    clients c ON c.client_id = o.client_id;
 
 
--     SELECT 
+--     SELECT 
 --     e.first_name,
 --     e.last_name,
 --     e.phone,
@@ -50,7 +54,7 @@ JOIN
 
 
 insert into orders (order_date, delivery_date,order_feedback, order_sticker_quantity, client_id, materials_id) values
-('2025-03-03','2025-04-01',"its was fantastic", 500,7,1);
+('2025-03-03','2025-04-01',"its was fantastic", 5100,7,1);
 
 select * from clients
 where client_id = 15;
