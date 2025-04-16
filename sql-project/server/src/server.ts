@@ -1,22 +1,21 @@
-import express, { Request, Response } from 'express';
-import mysql from 'mysql2/promise';
-import dotenv from "dotenv";
-import cors from 'cors';
-import mainRoutes from './Routes/mainRoutes';
-export type RequestHandler = (req: Request, res: Response) => Promise<void> | void;
-dotenv.config()
+import express from 'express';
+import authRoutes from "./routes/authRoutes"; 
+import { pool } from './models/db';
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
-// Create the Express application
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const myPassword = process.env.myPassword;
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176'], // Array of allowed origins
-    credentials: true,
+  origin: "http://localhost:5173",
+  credentials: true                
 }));
+app.use(cookieParser())
 
-// Configure middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,6 +30,20 @@ export const pool = mysql.createPool({
     queueLimit: 0
 });
 
+
+app.use("/api/auth", authRoutes);
+
+pool.getConnection()
+  .then(() => {
+    console.log("✅ Connected to MySQL database successfully!");
+  })
+  .catch((err) => {
+    console.error("❌ Failed to connect to MySQL:", err);
+  });
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
 
 const AddProduct: RequestHandler = async (req, res) => {
     try{
