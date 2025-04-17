@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface OrderFormData {
@@ -8,7 +8,7 @@ interface OrderFormData {
   delivery_date: string;
   praises: string;
   knives_id: string;
-  engravings_id: string;
+  sticker_finesh: string;
   sticker_id: string;
   arrival_date: string;
   sticker_quantity: string;
@@ -18,6 +18,70 @@ interface OrderFormData {
 
 const useAddOrderVM = () => {
   const navigate = useNavigate();
+  const [clientId, setClientId] = useState([]);
+  const [materials, setMaterials] = useState([]);
+  const [selectedMaterialId, setSelectedMaterialId] = useState("");
+
+  const [sticker_finish, set_sticker_finish] = useState([]);
+  const [selected_sticker_finesh, set_selected_sticker_finesh] = useState("");
+  const [date, setDate] = useState("");
+  console.log(date)
+  console.log(selectedMaterialId)
+  console.log(selected_sticker_finesh)
+
+  useEffect(() => {
+    const fetchClientId = async () => {
+      try{
+        const response = await fetch(
+            "http://localhost:3000/api/fetchClientId",{
+               credentials: 'include'
+            }
+        );
+        if (!response.ok) throw new Error("Failed to fetch clientId");
+
+        const data = await response.json();
+        setClientId(data.result)
+
+      }
+      catch (error){
+        console.error("error fetching clientId", error);
+      }
+    }
+    const fetchMaterials = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/fetchMaterials"
+        );
+        if (!response.ok) throw new Error("Failed to fetch materials");
+
+        const data = await response.json();
+        setMaterials(data.result);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    const fetch_sticker_finesh = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/fetch_sticker_finesh"
+        );
+        if (!response.ok) throw new Error("Failed to fetch materials");
+
+        const data = await response.json();
+        set_sticker_finish(data.result);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetch_sticker_finesh(),fetchMaterials(),fetchClientId();
+  }, []);
+
+  function set_new_order ()
+  {
+    
+  }
 
   const [formData, setFormData] = useState<OrderFormData>({
     order_id: "",
@@ -26,7 +90,7 @@ const useAddOrderVM = () => {
     delivery_date: "",
     praises: "",
     knives_id: "",
-    engravings_id: "",
+    sticker_finesh: "",
     sticker_id: "",
     arrival_date: "",
     sticker_quantity: "",
@@ -48,7 +112,7 @@ const useAddOrderVM = () => {
 
     console.log("Order added:", formData);
 
-    navigate("/orders");
+    // navigate("/orders");
   };
 
   return {
@@ -56,6 +120,12 @@ const useAddOrderVM = () => {
     handleInputChange,
     handleSubmit,
     handleBackClick,
+    materials, setMaterials,
+    selectedMaterialId, setSelectedMaterialId,
+    sticker_finish, set_sticker_finish,
+    selected_sticker_finesh, set_selected_sticker_finesh,
+    date, setDate,
+    clientId
   };
 };
 

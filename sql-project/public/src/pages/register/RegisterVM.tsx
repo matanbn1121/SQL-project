@@ -49,6 +49,39 @@ export function useRegisterVM() {
     }
   }
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Registering client:', formData);
+
+    fetch('http://localhost:3000/api/register', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(async (response) => {
+            const data = await response.json();
+
+            if (!response.ok) {
+                // הצגת שגיאה מהשרת ב-alert
+                alert(data.message || 'Registration failed');
+                throw new Error(data.message || 'Registration failed');
+            }
+
+            // הצלחה - הצגת הודעה ומעבר לעמוד login
+            alert('Registration successful');
+            navigate('/login');
+        })
+        .catch((error) => {
+            console.error('Error during registration:', error);
+            // כבר הצגנו alert בשלב קודם אם זה מהשרת, אז כאן זה ליתר ביטחון
+            alert('Something went wrong during registration.');
+        });
+};
+
+
   return {
     firstName, setFirstName,
     lastName, setLastName,

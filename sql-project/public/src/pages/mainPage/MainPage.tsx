@@ -6,6 +6,27 @@ import useMainPageVM from "./mainPageVM";
 const MainPage = () => {
   const { handleAddOrderClick, handleMyOrdersClick } = useMainPageVM();
 
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/fetchOrdersByClient");
+        if (!response.ok) throw new Error("בעיה בטעינת ההזמנות");
+        const data = await response.json();
+        setOrders(data.result);
+      } catch (err: any) {
+        setError(err.message || "שגיאה לא צפויה");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
   return (
     <div className={styles.container}>
       <NavBar />

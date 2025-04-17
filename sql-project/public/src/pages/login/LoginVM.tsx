@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../components/context/AuthContext";
 
@@ -35,6 +36,9 @@ function useLoginVM() {
   return {
     handleBackClick,
     handleLogin,
+    email, setEmail,
+    password, setPassword,
+    handleSubmit
   };
 }
 
