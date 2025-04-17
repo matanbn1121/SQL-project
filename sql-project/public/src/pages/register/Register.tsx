@@ -22,7 +22,8 @@ const Register = () => {
         <img src={logo} alt="לוגו" className={styles.logo} />
         <h2 className={styles.title}>הרשמה</h2>
 
-        <div className={styles.form}>
+        {/* טופס אמיתי */}
+        <form className={styles.form} onSubmit={handleSubmit}>
           <input type="text" placeholder="שם פרטי" required value={firstName} onChange={(e) => setFirstName(e.target.value)} className={styles.input} />
           <input type="text" placeholder="שם משפחה" required value={lastName} onChange={(e) => setLastName(e.target.value)} className={styles.input} />
           <input type="text" placeholder="שם החברה" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className={styles.input} />
@@ -31,11 +32,11 @@ const Register = () => {
           <input type="password" placeholder="סיסמה" required value={password} onChange={(e) => setPassword(e.target.value)} className={styles.input} />
           <input type="password" placeholder="אישור סיסמה" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className={styles.input} />
 
-          <Button text="צור חשבון" onClick={handleSubmit} />
-        </div>
+          <Button text="צור חשבון" type="submit" />
+        </form>
       </div>
     </div>
   );
-}
+};
 
 export default Register;

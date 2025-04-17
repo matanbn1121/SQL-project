@@ -1,15 +1,17 @@
-
 import styles from "./login.module.scss";
 import logo from "../../assets/logo_he.png";
 import Button from "../../components/Button/Button";
-import { useState } from "react";
 import useLoginVM from "./LoginVM";
 
 const Login = () => {
-  const { handleBackClick, handleLogin } = useLoginVM();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    handleBackClick,
+    handleSubmit,
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useLoginVM();
 
   return (
     <div className={styles.login}>
@@ -21,7 +23,8 @@ const Login = () => {
         <img src={logo} alt="לוגו" className={styles.logo} />
         <h2 className={styles.title}>התחברות</h2>
 
-        <div className={styles.form}>
+        {/* טופס אמיתי עם onSubmit */}
+        <form className={styles.form} onSubmit={handleSubmit}>
           <input
             className={styles.input}
             type="email"
@@ -38,8 +41,8 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button text="התחברות" onClick={() => handleLogin(email, password)} />
-        </div>
+          <Button text="התחברות" type="submit" />
+        </form>
       </div>
     </div>
   );

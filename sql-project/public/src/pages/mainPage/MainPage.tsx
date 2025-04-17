@@ -2,6 +2,8 @@ import styles from "./mainPage.module.scss";
 import NavBar from "../../components/navbar/navbar";
 import logo from "../../assets/logo_he.png";
 import useMainPageVM from "./mainPageVM";
+import { useEffect, useState } from "react";
+import { Order } from "../../components/orderList/OrderList";
 
 const MainPage = () => {
   const { handleAddOrderClick, handleMyOrdersClick } = useMainPageVM();
