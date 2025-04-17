@@ -22,7 +22,7 @@ export const register = async (req: Request, res: Response) => {
         client_name, client_email, client_password,
         client_entry_date, client_phone
       ) VALUES (?, ?, ?, ?, ?)`,
-      [client_name, client_email, hashed, client_entry_date, client_phone, ]
+      [client_name, client_email, hashed, client_entry_date, client_phone]
     );
 
     const token = jwt.sign(
@@ -73,4 +73,24 @@ export const login = async (req: Request, res: Response): Promise<any> => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
+};
+
+export const getCurrentUser = (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).json({ message: "Not authenticated" });
+
+    const decoded = jwt.verify(token, JWT_SECRET) as {
+      client_id: number;
+      client_email: string;
+    };
+
+    res.status(200).json({ client_id: decoded.client_id, client_email: decoded.client_email });
+  } catch (error) {
+    res.status(401).json({ message: "Invalid token" });
+  }
+};
+
+export const logout = (req: Request, res: Response) => {
+  res.clearCookie("token").status(200).json({ message: "Logged out successfully" });
 };

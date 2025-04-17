@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-interface OrderFormData {
+export interface Order {
   order_id: string;
   client_id: string;
   order_date: string;
@@ -18,42 +18,34 @@ interface OrderFormData {
 
 const useOrderListVM = () => {
   const navigate = useNavigate();
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const [formData, setFormData] = useState<OrderFormData>({
-    order_id: "",
-    client_id: "",
-    order_date: "",
-    delivery_date: "",
-    praises: "",
-    knives_id: "",
-    engravings_id: "",
-    sticker_id: "",
-    arrival_date: "",
-    sticker_quantity: "",
-    knives_quantity: "",
-    materials_type: "",
-  });
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/orders");
+        if (!response.ok) {
+          throw new Error("Failed to fetch orders");
+        }
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
+        const data = await response.json();
+        setOrders(data);
+      } catch (err: any) {
+        setError(err.message || "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Order Submitted:", formData);
-    // TODO: Add API request here or validation logic
-  };
+    fetchOrders();
+  }, []);
 
   return {
-    formData,
-    handleInputChange,
-    handleSubmit,
-    handleBackClick,
+    orders,
+    loading,
+    error,
   };
 };
 

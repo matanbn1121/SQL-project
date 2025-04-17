@@ -18,7 +18,7 @@ const AddOrder = () => {
           ← חזור
         </button>
 
-        <img src={logo} alt="לוגו" className={styles.logo} />
+        <img src={logo} alt="logo" className={styles.logo} />
         <h2 className={styles.title}>הוספת הזמנה חדשה</h2>
 
         <form className={styles.form} onSubmit={handleSubmit}>
