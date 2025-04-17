@@ -1,7 +1,7 @@
 import styles from "./MyOrderPage.module.scss"; 
 import NavBar from "../../components/navbar/navbar";
 import OrderList from "../../components/orderList/OrderList";
-import useOrderListVM from "../../components/orderList/OrderListVM;
+import useOrderListVM from "../../components/orderList/OrderListVM"; // Adjust the import path as necessary
 
 const MyOrderPage = () => {
   const { orders, loading, error } = useOrderListVM();
