@@ -1,9 +1,23 @@
-import { pool, RequestHandler } from "../server";
+import { RequestHandler } from "express";
+import { pool } from "../models/db"
 
 export const fetchOrdersByClient: RequestHandler = async (req, res) => {
     try{
          const [result] = await pool.execute(
-            'SELECT o.order_date, o.delivery_date, o.order_feedback, o.order_sticker_quantity, m.material_description FROM orders o JOIN materials m ON m.materials_id = o.materials_id;',
+            `SELECT
+                c.client_id,
+                o.order_id,
+                o.order_date,
+                o.delivery_date,
+                o.order_feedback,
+                o.order_sticker_quantity,
+                m.material_description
+            FROM
+                orders o
+            JOIN
+                materials m ON m.materials_id = o.materials_id
+            JOIN
+                clients c ON c.client_id = o.client_id;`,
         );
 
         // console.log("results", result);
