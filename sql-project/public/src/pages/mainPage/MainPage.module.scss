@@ -1,60 +1,57 @@
-.mainPage {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  
-  .logo {
-    width: 180px;
-    height: auto;
-  }
-  
-  .title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .back {
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: #007bff;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.2s ease;
-  }
-  
-  .back:hover {
-    color: #0056b3;
-  }
-  
-  .mainPage_content {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    margin-top: 40px;
-    padding: 0 20px;
-  }
-  
-  .loading,
-  .error {
-    font-size: 18px;
-    color: #ff6347;
-  }
-  
-  .orderList {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  font-family: 'Segoe UI', sans-serif;
+  padding-top: 3rem;
+  margin-top: 3rem;  
+}
+
+.nav_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; 
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px 40px; 
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.logoContainer {
+  margin: 0;
+}
+
+.mainLogo {
+  width: 180px;
+  height: auto;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  width: 100%;
+}
+
+.mainButton {
+  background-color: #4a90e2;
+  color: white;
+  padding: 10px 0; 
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mainButton:hover {
+  background-color: #357ab8;
+}

@@ -1,13 +1,14 @@
-
-import './App.css'
+// App.tsx
+import './App.css';
+import AppRouter from './router/AppRouter'; 
+import { AuthProvider } from './components/context/AuthContext'; 
 
 function App() {
-
   return (
-    <>
-      <h1>hello world</h1>
-    </>
-  )
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

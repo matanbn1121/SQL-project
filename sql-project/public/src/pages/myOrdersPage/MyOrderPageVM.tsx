@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-const useMainPageVM = () => {
+const useAddOrderPageVM = () => {
   const navigate = useNavigate();
 
   const handleAddOrderClick = () => {
-    navigate("/add-order-page");
+    navigate("/my-orders-page");
   };
 
   const handleMyOrdersClick = () => {
@@ -17,4 +17,4 @@ const useMainPageVM = () => {
   };
 };
 
-export default useMainPageVM;
+export default useAddOrderPageVM;
