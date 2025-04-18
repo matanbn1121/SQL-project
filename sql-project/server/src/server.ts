@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes';
 import dotenv from "dotenv";
 import { pool } from './models/db';
+import mainRoutes from './routes/mainRoutes';
+export type RequestHandler = (req: Request, res: Response) => Promise<void> | void;
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+app.use("/main", mainRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

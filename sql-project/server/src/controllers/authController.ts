@@ -51,10 +51,17 @@ export const register = async (req: Request, res: Response): Promise<Response | 
       { expiresIn: "7d" }
     );
 
+    const user = jwt.sign(
+      { client_id: result.insertId, client_email },
+      JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
     console.log("🔑 Token generated:", token);
 
     res
       .cookie("token", token, { httpOnly: true, sameSite: "strict" })
+      .cookie("user", user, { httpOnly: true, sameSite: "strict" })
       .status(201)
       .json({ message: "Client registered successfully" });
 

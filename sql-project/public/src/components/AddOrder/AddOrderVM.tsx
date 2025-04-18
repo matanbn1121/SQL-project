@@ -33,7 +33,7 @@ const useAddOrderVM = () => {
     const fetchClientId = async () => {
       try{
         const response = await fetch(
-            "http://localhost:3000/api/fetchClientId",{
+            "http://localhost:3000/main/fetchClientId",{
                credentials: 'include'
             }
         );
@@ -50,7 +50,7 @@ const useAddOrderVM = () => {
     const fetchMaterials = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/fetchMaterials"
+          "http://localhost:3000/main/fetchMaterials"
         );
         if (!response.ok) throw new Error("Failed to fetch materials");
 
@@ -64,7 +64,7 @@ const useAddOrderVM = () => {
     const fetch_sticker_finesh = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/api/fetch_sticker_finesh"
+          "http://localhost:3000/main/fetch_sticker_finesh"
         );
         if (!response.ok) throw new Error("Failed to fetch materials");
 

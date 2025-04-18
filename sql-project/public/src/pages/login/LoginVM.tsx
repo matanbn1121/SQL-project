@@ -29,6 +29,7 @@ function useLoginVM() {
 
       if (res.ok) {
         setIsRegistered(true);
+        alert("Login successful");
         window.location.href = "/mainPage";
       } else {
         alert(data.message || "אימייל או סיסמה שגויים");
