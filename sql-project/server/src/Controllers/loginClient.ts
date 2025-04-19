@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import dotenv from "dotenv";
-import { pool, RequestHandler } from '../server';
+import { pool } from "../models/db"
+import { RequestHandler } from "express";
 const secret = process.env.secret;
 const jwt = require('jwt-simple');
 dotenv.config()
@@ -36,8 +37,10 @@ export const loginClient: RequestHandler = async (req, res) => {
 
         //create cookie
         const token = jwt.encode({ id: client.client_id }, secret, 'HS256', 'none');
+        const user = jwt.encode({ id: client.client_id }, secret, 'HS256', 'none');
 
         res.cookie('token', token, { httpOnly: true, secure: false });
+        res.cookie('user', token, { httpOnly: true, secure: false });
 
         res.status(200).json({
             success: true,

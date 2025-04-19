@@ -9,11 +9,8 @@ dotenv.config();
 export const fetchClientId: RequestHandler = async (req,res) => {
     try{
         const user = req.cookies.token; 
-        console.log(user)
         const decoded = jwt.decode(user, secret as string);
-        console.log(decoded)
         const clientId = decoded.client_id;
-        console.log(clientId)
     
         const [result] = await pool.execute(
             'select * from clients where client_id = ?', [clientId]

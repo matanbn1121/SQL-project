@@ -3,31 +3,15 @@ import NavBar from "../../components/navbar/navbar";
 import logo from "../../assets/logo_he.png";
 import useMainPageVM from "./mainPageVM";
 import { useEffect, useState } from "react";
-import { Order } from "../../components/orderList/OrderList";
+// import { Order } from "../../components/orderList/OrderList";
 
 const MainPage = () => {
-  const { handleAddOrderClick, handleMyOrdersClick } = useMainPageVM();
+  const { handleAddOrderClick, handleMyOrdersClick , clientId} = useMainPageVM();
 
-  const [orders, setOrders] = useState<Order[]>([]);
+  // const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/main/fetchOrdersByClient");
-        if (!response.ok) throw new Error("בעיה בטעינת ההזמנות");
-        const data = await response.json();
-        setOrders(data.result);
-      } catch (err: any) {
-        setError(err.message || "שגיאה לא צפויה");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchOrders();
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -36,7 +20,7 @@ const MainPage = () => {
       <div className={styles.logoContainer}>
         <img src={logo} alt="logo" className={styles.mainLogo} />
       </div>
-  
+      <p>Welcome Back {clientId?.[0]?.client_name || "משתמש"}</p>
       <div className={styles.buttonGroup}>
         <button className={styles.mainButton} onClick={handleAddOrderClick}>
           הוספת הזמנה

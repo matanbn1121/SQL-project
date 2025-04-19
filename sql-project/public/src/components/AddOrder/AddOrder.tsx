@@ -28,9 +28,7 @@ const AddOrder = () => {
         <button onClick={handleBackClick} className={styles.back}>
           ← חזור
         </button>
-
         <img src={logo} alt="לוגו" className={styles.logo} />
-        <p>Welcome Back {clientId?.[0]?.client_name || "משתמש"}</p>
         <h2 className={styles.title}>הוספת הזמנה חדשה</h2>
 
         <form className={styles.form} onSubmit={handleSubmit}>
