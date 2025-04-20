@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import useNavBar from './navbarVM';
 import styles from './navbar.module.scss';
 import logo from '../../assets/logo_he.png';
@@ -28,11 +28,14 @@ const NavBar = () => {
       <button className="btn" onClick={handleLogout}>
         התנתקות
       </button>
+      
     )}
-    <Link to="/my-orders-page">ההזמנות שלי</Link>
-    <Link to="/add-order-page">הוספת הזמנה</Link>
+    
+    <Link to="/mainPage/my-orders">ההזמנות שלי</Link>
+    <Link to="/mainPage/add-order">הוספת הזמנה</Link>
     <Link to="/mainPage">בית</Link>
   </div>
+
 </div>
   );
 };

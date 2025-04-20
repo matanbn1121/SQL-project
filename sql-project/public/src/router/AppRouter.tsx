@@ -14,9 +14,12 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/mainPage" element={<MainPage />} />
-        <Route path="/add-order-page" element={<AddOrder />} />
-        <Route path="/my-orders-page" element={<OrderList />} />
+
+        
+        <Route path="/mainPage" element={<MainPage />}>
+          <Route path="add-order" element={<AddOrder />} />
+          <Route path="my-orders" element={<OrderList orders={[]} />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

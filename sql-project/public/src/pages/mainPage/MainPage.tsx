@@ -3,6 +3,7 @@ import NavBar from "../../components/navbar/navbar";
 import logo from "../../assets/logo_he.png";
 import useMainPageVM from "./mainPageVM";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 // import { Order } from "../../components/orderList/OrderList";
 
 const MainPage = () => {
@@ -16,6 +17,7 @@ const MainPage = () => {
   return (
     <div className={styles.container}>
       <NavBar />
+      <Outlet/>
     <div className={styles.nav_container}>
       <div className={styles.logoContainer}>
         <img src={logo} alt="logo" className={styles.mainLogo} />
@@ -28,9 +30,12 @@ const MainPage = () => {
         <button className={styles.mainButton} onClick={handleMyOrdersClick}>
           ההזמנות שלי
         </button>
+
       </div>
     </div>
+
   </div>
+
   );
 };
 

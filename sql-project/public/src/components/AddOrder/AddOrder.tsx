@@ -1,6 +1,5 @@
 import styles from "./AddOrder.module.scss";
 import logo from "../../assets/logo_he.png";
-import Button from "../../components/Button/Button";
 import useAddOrderVM from "./AddOrderVM";
 
 const AddOrder = () => {

@@ -28,11 +28,11 @@ const useMainPageVM = () => {
   const navigate = useNavigate();
 
   const handleAddOrderClick = () => {
-    navigate("/add-order-page");
+    navigate("add-order");
   };
 
   const handleMyOrdersClick = () => {
-    navigate("/my-orders-page");
+    navigate("my-orders");
   };
 
   return {
