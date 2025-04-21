@@ -19,21 +19,13 @@ const NavBar = () => {
 <div className={styles.main}>
   <img src={logo} alt="logo" className={styles.logo} />
 
-  <div className={styles.navButtons}>
-    {!isRegistered ? (
-      <Link className="btn" to="/login">
-        התחברות
-      </Link>
-    ) : (
-      <button className="btn" onClick={handleLogout}>
-        התנתקות
-      </button>
-      
-    )}
+  <div className={styles.navButtons}>{isRegistered ? (<Link className="btn" to="/login"> התחברות   </Link>  ) : (    <button className="btn" onClick={handleLogout}>        התנתקות      </button> 
+)}
     
     <Link to="/mainPage/my-orders">ההזמנות שלי</Link>
     <Link to="/mainPage/add-order">הוספת הזמנה</Link>
     <Link to="/mainPage">בית</Link>
+    <p></p>
   </div>
 
 </div>
