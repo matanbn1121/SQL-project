@@ -3,7 +3,8 @@ import styles from "./welcomePage.module.scss";
 import logo from "../../assets/logo_he.png";import useWelcomePageVM from './welcomePageVM';
 
 const WelcomePage = () => {
-    const { handleAddOrderClick, handleMyOrdersClick , clientId} = useWelcomePageVM();
+    const { handleAddOrderClick, handleMyOrdersClick,handelAllOrdersClick , clientId} = useWelcomePageVM();
+    console.log(clientId?.[0]?.client_email)
   return (
     <div className={styles.nav_container}>
       <div className={styles.logoContainer}>
@@ -17,6 +18,11 @@ const WelcomePage = () => {
         <button className={styles.mainButton} onClick={handleMyOrdersClick}>
           ההזמנות שלי
         </button>
+        {clientId?.[0]?.client_email === "admin@admin.com" && (
+        <button className={styles.mainButton} onClick={handelAllOrdersClick} >הצג את כל ההזמנות</button>
+)}
+
+
 
       </div>
     </div>

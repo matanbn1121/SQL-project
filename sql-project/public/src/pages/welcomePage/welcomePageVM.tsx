@@ -35,9 +35,14 @@ const useWelcomePageVM = () => {
     navigate("my-orders");
   };
 
+  const handelAllOrdersClick = () => {
+    navigate("all-orders");
+  }
+
   return {
     handleAddOrderClick,
     handleMyOrdersClick,
+    handelAllOrdersClick,
     clientId
   };
 };

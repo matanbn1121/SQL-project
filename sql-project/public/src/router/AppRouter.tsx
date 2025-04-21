@@ -21,6 +21,7 @@ const AppRouter = () => {
           <Route index element={<WelcomePage />} />
           <Route path="add-order" element={<AddOrder />} />
           <Route path="my-orders" element={<OrderList orders={[]} />} />
+          <Route path="all-orders" element={<OrderList orders={[]} />} />
   
           
         </Route>
