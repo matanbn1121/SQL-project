@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./orderList.module.scss";
-import useOrderListVM from "./OrderListVM";
+import styles from "./AllOrderList.module.scss";
+import useOrderListVM from "./AllOrderListVM";
 
 // export interface Order {
 //   order_id: string;
@@ -20,7 +20,7 @@ import useOrderListVM from "./OrderListVM";
 //   orders: Order[];
 // }
 
-const OrderList: React.FC = () => {
+const AllOrderList: React.FC = () => {
   const { formData } = useOrderListVM(); // עכשיו formData הוא מערך
   console.log("orders is:")
   console.log(formData)
@@ -59,4 +59,4 @@ const OrderList: React.FC = () => {
 };
 
 
-export default OrderList;
+export default AllOrderList;

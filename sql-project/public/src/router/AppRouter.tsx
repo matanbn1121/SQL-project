@@ -7,6 +7,7 @@ import MainPage from '../pages/mainPage/MainPage';
 import AddOrder from '../components/AddOrder/AddOrder';
 import OrderList from '../components/orderList/OrderList';
 import WelcomePage from '../pages/welcomePage/welcomePage';
+import AllOrderList from '../components/AllOrderList/AllOrderList';
 
 const AppRouter = () => {
   return (
@@ -21,7 +22,7 @@ const AppRouter = () => {
           <Route index element={<WelcomePage />} />
           <Route path="add-order" element={<AddOrder />} />
           <Route path="my-orders" element={<OrderList orders={[]} />} />
-          <Route path="all-orders" element={<OrderList orders={[]} />} />
+          <Route path="all-orders" element={<AllOrderList orders={[]} />} />
   
           
         </Route>

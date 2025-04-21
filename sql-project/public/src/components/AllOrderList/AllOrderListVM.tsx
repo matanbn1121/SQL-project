@@ -16,7 +16,7 @@ interface OrderFormData {
   materials_type: string;
 }
 
-const useOrderListVM = () => {
+const AllOrderListVM = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<OrderFormData[]>([]);
@@ -29,7 +29,7 @@ const useOrderListVM = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("http://localhost:3000/main/fetchOrdersByClient",{
+        const response = await fetch("http://localhost:3000/main/fetchAllOrders",{
           credentials: 'include'
         });
         if (!response.ok) throw new Error("בעיה בטעינת ההזמנות");
@@ -67,4 +67,4 @@ const useOrderListVM = () => {
     handleBackClick };
 };
 
-export default useOrderListVM;
+export default AllOrderListVM;
