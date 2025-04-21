@@ -6,6 +6,7 @@ import Register from '../pages/register/Register';
 import MainPage from '../pages/mainPage/MainPage';
 import AddOrder from '../components/AddOrder/AddOrder';
 import OrderList from '../components/orderList/OrderList';
+import WelcomePage from '../pages/welcomePage/welcomePage';
 
 const AppRouter = () => {
   return (
@@ -17,8 +18,11 @@ const AppRouter = () => {
 
         
         <Route path="/mainPage" element={<MainPage />}>
+          <Route index element={<WelcomePage />} />
           <Route path="add-order" element={<AddOrder />} />
           <Route path="my-orders" element={<OrderList orders={[]} />} />
+  
+          
         </Route>
       </Routes>
     </BrowserRouter>

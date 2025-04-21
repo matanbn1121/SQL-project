@@ -18,7 +18,7 @@ const MainPage = () => {
     <div className={styles.container}>
       <NavBar />
       <Outlet/>
-    <div className={styles.nav_container}>
+    {/* <div className={styles.nav_container}>
       <div className={styles.logoContainer}>
         <img src={logo} alt="logo" className={styles.mainLogo} />
       </div>
@@ -32,7 +32,7 @@ const MainPage = () => {
         </button>
 
       </div>
-    </div>
+    </div> */}
 
   </div>
 

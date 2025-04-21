@@ -57,6 +57,10 @@ export function useRegisterVM() {
     }
   };
 
+  function handleBackClick() {
+    navigate("/");
+  }
+
 
   return {
     firstName, setFirstName,
@@ -66,6 +70,6 @@ export function useRegisterVM() {
     email, setEmail,
     password, setPassword,
     confirmPassword, setConfirmPassword,
-    handleSubmit
+    handleSubmit,handleBackClick
   };
 }
