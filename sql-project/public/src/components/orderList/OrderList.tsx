@@ -21,7 +21,7 @@ import useOrderListVM from "./OrderListVM";
 // }
 
 const OrderList: React.FC = () => {
-  const { formData } = useOrderListVM(); // עכשיו formData הוא מערך
+  const { formData,deleteOrder } = useOrderListVM(); // עכשיו formData הוא מערך
   console.log("orders is:")
   console.log(formData)
   
@@ -49,7 +49,10 @@ const OrderList: React.FC = () => {
                 <div><strong>ביקורת על ההזמנה:</strong> {order.praises}</div>
                 <div><strong>כמות מדבקות:</strong> {order.sticker_quantity}</div>
                 <div><strong>סוג חומר:</strong> {order.materials_type}</div>
+                <button onClick={() => deleteOrder(order.order_id)}> מחק</button>
+
               </li>
+              
             ))}
           </ul>
         )}

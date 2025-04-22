@@ -48,10 +48,22 @@ const useOrderListVM = () => {
     fetchOrders();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+
+  const deleteOrder = async (orderId: string) => {
+    try {
+      const response = await fetch(`http://localhost:3000/main/deleteOrder/${orderId}`,{
+        method: "DELETE",
+        credentials: 'include'
+      });
+      if (!response.ok) throw new Error("שגיאה במחיקת ההזמנה");
+      setFormData((prev) => prev.filter(order => order.order_id !== orderId));
+      console.log("Order deleted successfully");
+    } catch (err) {
+      console.error("Error deleting order:", err);
+    }
   };
+
 
 
   // const handleSubmit = (e: React.FormEvent) => {
@@ -62,9 +74,11 @@ const useOrderListVM = () => {
 
   return {
     formData,
-    handleInputChange,
+    //handleInputChange,
     // handleSubmit,
-    handleBackClick };
-};
+    handleBackClick,
+      deleteOrder
+    };
+  };
 
 export default useOrderListVM;
