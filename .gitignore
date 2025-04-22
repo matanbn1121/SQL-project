@@ -7,7 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-<<<<<<< Updated upstream
 # Dependency directories
 node_modules/
 
@@ -16,11 +15,6 @@ dist/
 dist-ssr/
 
 # Local env files
-=======
-node_modules/
-dist
-dist-ssr
->>>>>>> Stashed changes
 *.local
 
 # System files
