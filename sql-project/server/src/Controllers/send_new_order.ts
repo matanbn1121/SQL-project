@@ -3,7 +3,7 @@ import { pool } from "../models/db";
 
 
 export const send_new_order = async (req: Request, res: Response): Promise<Response | any> => {
-    const {
+    let {
         order_date,
         delivery_date,
         praises,
@@ -11,12 +11,13 @@ export const send_new_order = async (req: Request, res: Response): Promise<Respo
         client_id,
         materials_id,
     } = req.body;
+
+    if (materials_id === "" || materials_id === undefined || materials_id === null) {
+      materials_id = 1;}
   
     console.log("📥 BODY (register):", req.body);
   
-    try {
-
-  
+    try {  
       const sql = `insert into orders(
             order_date, delivery_date,praises, sticker_quantity,
             client_id, materials_id
@@ -30,6 +31,7 @@ export const send_new_order = async (req: Request, res: Response): Promise<Respo
         sticker_quantity,
         client_id,materials_id
       ];
+
   
       console.log("📤 Executing SQL:", sql);
       console.log("📤 With values:", values);
