@@ -16,6 +16,7 @@ export const register = async (req: Request, res: Response): Promise<Response | 
     client_password,
     client_entry_date,
     client_phone,
+     
   } = req.body;
 
   console.log("📥 BODY (register):", req.body);
@@ -25,18 +26,13 @@ export const register = async (req: Request, res: Response): Promise<Response | 
     console.log("🔐 Hashed password:", hashed);
 
     const sql = `
-      INSERT INTO clients (
-        client_name, client_email, client_password,
-        client_entry_date, client_phone
-      ) VALUES (?, ?, ?, ?, ?)
-    `;
-    const values = [
-      client_name,
-      client_email,
-      hashed,
-      client_entry_date,
-      client_phone,
-    ];
+    INSERT INTO clients (
+      client_name, client_email, client_password,
+      client_entry_date, client_phone
+    ) VALUES (?, ?, ?, ?, ?)
+  `;
+  
+  const values = [client_name, client_email, hashed, client_entry_date, client_phone];
 
     console.log("📤 Executing SQL:", sql);
     console.log("📤 With values:", values);
