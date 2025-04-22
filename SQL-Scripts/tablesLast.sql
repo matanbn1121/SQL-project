@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS SQL_slr_Project;
+CREATE DATABASE IF NOT EXISTS sql_slr_Project;
 use sql_slr_Project;
 
 -- Client Table
@@ -7,7 +7,7 @@ client_id int not null auto_increment primary key,
 client_name varchar(200),
 client_entry_date date,
 client_address_id int,
-foreign key(client_address_id) references address(address_id) on delete cascade,
+-- foreign key(client_address_id) references address(address_id) on delete cascade,
 client_phone varchar(50),
 client_email VARCHAR(100) UNIQUE not null,
 client_password varchar(50),
@@ -109,7 +109,14 @@ material_width int
 );
 
 insert into materials (material_description, material_width) values
-('Sable', '250');
+('PP Transparent', 250),
+('PP White', 250),
+('PVC Transparent', 250),
+('PVC White', 250),
+('Paper Glossy', 210),
+('Paper Matte', 210),
+('PET Silver', 200),
+('PET Gold', 200);
 
 select * from materials;
 
@@ -134,14 +141,44 @@ order_arrival_date DATE,
 order_feedback VARCHAR(30),
 order_sticker_quantity INT,
 client_id INT,
-knives_id INT,
-engravings_id INT,
+-- knives_id INT,
+-- engravings_id INT,
 materials_id INT,
 FOREIGN KEY (client_id) REFERENCES clients(client_id),
-FOREIGN KEY (knives_id) REFERENCES knives(knives_id),
-FOREIGN KEY (engravings_id) REFERENCES engravings(engravings_id),
+-- FOREIGN KEY (knives_id) REFERENCES knives(knives_id),
+-- FOREIGN KEY (engravings_id) REFERENCES engravings(engravings_id),
 FOREIGN KEY (materials_id) REFERENCES materials(materials_id)
 );
+
+CREATE TABLE orders(
+order_id int not null auto_increment primary key,
+order_date DATE,
+delivery_date DATE,
+praises varchar(30),
+sticker_quantity int,
+client_id INT,
+materials_id INT,
+FOREIGN KEY (client_id) REFERENCES clients(client_id),
+FOREIGN KEY (materials_id) REFERENCES materials(materials_id)
+);
+
+create table sticker_finish (
+sticker_finesh_id int not null auto_increment primary key,
+sticker_finesh_description varchar(50)
+);
+
+insert into sticker_finish (sticker_finesh_description) values
+('Matte varnish'),
+('Gloss varnish'),
+('Matte lamination'),
+('Glossy lamination'),
+('mavreka');
+
+
+SELECT * FROM stickerFinish;
+-- create table address (
+-- address_id
+-- )
 
 alter table orders
 add column sticker_id int;
@@ -151,10 +188,7 @@ ADD FOREIGN KEY (sticker_id) REFERENCES sticker(sticker_id);
 
 select * from clients;
 
-
-
-
-
+select * FROM orders;
 
 
 
