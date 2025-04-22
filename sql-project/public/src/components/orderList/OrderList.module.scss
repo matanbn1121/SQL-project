@@ -6,6 +6,7 @@
   align-items: center;
   background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
   font-family: 'Segoe UI', sans-serif;
+  color:#333;
 }
 
 .listContainer {
@@ -20,6 +21,7 @@
   width: 400px;
   max-height: 80%;
   overflow-y: auto;
+  color:#333;
 }
 
 .listTitle {
@@ -33,6 +35,7 @@
   width: 100%;
   padding: 0;
   list-style-type: none;
+  color:#333;
 }
 
 .orderItem {
@@ -46,10 +49,12 @@
   direction: rtl;
   text-align: right;
   background-color: #f9f9f9;
+  color:#333;
 }
 
 .orderItem div {
   margin-bottom: 10px;
+  color:#333;
 }
 
 .emptyMessage {

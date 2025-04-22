@@ -45,6 +45,6 @@ export const send_new_order = async (req: Request, res: Response): Promise<Respo
     } catch (err: any) {
       console.error("❌ reviced order ERROR:", err);
     
-      res.status(500).json({ message: "Registration failed", error: err.message });
+      res.status(500).json({ message: "Failed to add order", error: err.message });
     }
   };

@@ -7,7 +7,7 @@ interface OrderFormData {
   order_date: string;
   delivery_date: string;
   praises: string;
-  knives_id: string;
+  // knives_id: string;
   sticker_finesh: string;
   sticker_id: string;
   arrival_date: string;
@@ -80,14 +80,14 @@ const useAddOrderVM = () => {
   try {
     console.log("send order clicked:")
     console.log(date)
-    console.log(formData.knives_id)
+    // console.log(formData.knives_id)
     console.log(formData.sticker_quantity)
     console.log(selected_sticker_finesh)
     console.log(selectedMaterialId)
     console.log(formData.praises)
 
     const delivery_date = date;
-    const stickerDimensions = formData.knives_id;
+    // const stickerDimensions = formData.knives_id;
     const sticker_quantity = formData.sticker_quantity;
     const stickerFinesh = selected_sticker_finesh;
     const materials_id = selectedMaterialId;
@@ -133,7 +133,7 @@ const useAddOrderVM = () => {
     order_date: "",
     delivery_date: "",
     praises: "",
-    knives_id: "",
+    // knives_id: "",
     sticker_finesh: "",
     sticker_id: "",
     arrival_date: "",
