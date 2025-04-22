@@ -52,7 +52,7 @@ const useOrderListVM = () => {
 
   const deleteOrder = async (orderId: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/main/deleteOrder/${orderId}`,{
+      const response = await fetch(`http://localhost:3000/main/deleteOrderByClient/${orderId}`, {
         method: "DELETE",
         credentials: 'include'
       });

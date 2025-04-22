@@ -1,10 +1,11 @@
 import express from "express";
-import { fetchMaterials } from "../Controllers/fetchMaterials";
-import { fetch_sticker_finesh } from "../Controllers/fetch_sticker_finesh";
-import { fetchClientId } from "../Controllers/getClientId";
-import { fetchOrdersByClient } from "../Controllers/fetchOrdersByClient";
 import { send_new_order } from "../controllers/send_new_order";
 import { fetchAllOrders } from "../controllers/fetchAllOrders";
+import { deleteOrderByClient } from "../controllers/deleteOrder";
+import { fetch_sticker_finesh } from "../controllers/fetch_sticker_finesh";
+import { fetchMaterials } from "../controllers/fetchMaterials";
+import { fetchClientId } from "../controllers/getClientId";
+import { fetchOrdersByClient } from "../controllers/fetchOrdersByClient";
 
 const mainRoutes = express.Router();
 
@@ -14,5 +15,7 @@ mainRoutes.get('/fetchClientId',fetchClientId)
 mainRoutes.get('/fetchOrdersByClient', fetchOrdersByClient)
 mainRoutes.post('/send_new_order', send_new_order)
 mainRoutes.get('/fetchAllOrders',fetchAllOrders)
+mainRoutes.delete('/deleteOrderByClient/:orderId',deleteOrderByClient)
+
 
 export default mainRoutes;
