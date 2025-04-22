@@ -4,7 +4,7 @@ import styles from './navbar.module.scss';
 import logo from '../../assets/logo_he.png';
 
 const NavBar = () => {
-  const { isRegistered, setIsRegistered } = useNavBar();
+  const { isRegistered, setIsRegistered,go_to_home_page } = useNavBar();
 
   const handleLogout = async () => {
     await fetch('http://localhost:3000/api/auth/logout', {
@@ -17,7 +17,7 @@ const NavBar = () => {
 
   return (
 <div className={styles.main}>
-  <img src={logo} alt="logo" className={styles.logo} />
+  <img onClick={go_to_home_page}src={logo} alt="logo" className={styles.logo} />
 
   <div className={styles.navButtons}>{isRegistered ? (<Link className="btn" to="/login"> התחברות   </Link>  ) : (    <button className="btn" onClick={handleLogout}>        התנתקות      </button> 
 )}
