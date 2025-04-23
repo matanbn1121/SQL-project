@@ -25,7 +25,6 @@ export function useRegisterVM() {
       client_password: password,
       client_entry_date: today as unknown as Date,
       client_phone: phone,
-      client_address_id: 3,
       client_company_registration: today as unknown as Date
     };
   
@@ -58,6 +57,6 @@ export function useRegisterVM() {
     email, setEmail,
     password, setPassword,
     confirmPassword, setConfirmPassword,
-    handleSubmit,handleBackClick
+    handleSubmit
   };
 }

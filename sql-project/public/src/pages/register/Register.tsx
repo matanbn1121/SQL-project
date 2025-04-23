@@ -2,7 +2,6 @@ import styles from "./register.module.scss";
 import logo from "../../assets/logo_he.png";
 import Button from "../../components/Button/Button";
 import { useRegisterVM } from "../register/RegisterVM";
-import { Link} from 'react-router-dom';
 
 function Register() {
   const {
@@ -14,13 +13,13 @@ function Register() {
     email, setEmail,
     password, setPassword,
     confirmPassword, setConfirmPassword,
-    handleSubmit,handleBackClick
+    handleSubmit
   } = useRegisterVM();
 
   return (
     <div className={styles.register}>
       <div className={styles.register_nav}>
-       <button onClick={handleBackClick} className={styles.back}>← חזור </button>
+        <button className={styles.back}>← חזור</button>
         <img src={logo} alt="לוגו" className={styles.logo} />
         <h2 className={styles.title}>הרשמה</h2>
 
