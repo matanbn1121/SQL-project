@@ -1,30 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./orderList.module.scss";
 import useOrderListVM from "./OrderListVM";
+import EditOrderForm from "../../components/EditOrder/EditOrder";
 
-// export interface Order {
-//   order_id: string;
-//   client_id: string;
-//   order_date: string;
-//   delivery_date: string;
-//   order_feedback: string;
-//   knives_id: string;
-//   engravings_id: string;
-//   sticker_id: string;
-//   arrival_date: string;
-//   order_sticker_quantity: string;
-//   knives_quantity: string;
-//   material_description: string;
-// }
-// interface OrderListProps {
-//   orders: Order[];
-// }
+const materialsMap: Record<string, string> = {
+  "1": "Paper",
+  "2": "Plastic",
+  "3": "Metal"
+};
 
 const OrderList: React.FC = () => {
-  const { formData,deleteOrder } = useOrderListVM(); // עכשיו formData הוא מערך
-  console.log("orders is:")
-  console.log(formData)
-  
+  const { formData, deleteOrder, updateOrder } = useOrderListVM();
+  const [editingId, setEditingId] = useState<string | null>(null);
+
   return (
     <div className={styles.orderList}>
       <div className={styles.listContainer}>
@@ -36,23 +24,38 @@ const OrderList: React.FC = () => {
           <ul className={styles.orderItems}>
             {formData.map((order) => (
               <li key={order.order_id} className={styles.orderItem}>
-                <div><strong>מס' הזמנה:</strong> {order.order_id}</div>
-                <div><strong>מס' לקוח:</strong> {order.client_id}</div>
-                <div>
-                  <strong>תאריך הזמנה:</strong>{" "}
-                  {new Date(order.order_date).toLocaleDateString("he-IL")}
-                </div>
-                <div>
-                  <strong>תאריך אספקה:</strong>{" "}
-                  {new Date(order.delivery_date).toLocaleDateString("he-IL")}
-                </div>
-                <div><strong>ביקורת על ההזמנה:</strong> {order.praises}</div>
-                <div><strong>כמות מדבקות:</strong> {order.sticker_quantity}</div>
-                <div><strong>סוג חומר:</strong> {order.materials_type}</div>
-                <button onClick={() => deleteOrder(order.order_id)}> מחק</button>
-
+                {editingId === order.order_id ? (
+                  <EditOrderForm
+                    order={order}
+                    onCancel={() => setEditingId(null)}
+                    onSave={(updatedOrder) => {
+                      updateOrder(updatedOrder);
+                      setEditingId(null);
+                    }}
+                  />
+                ) : (
+                  <>
+                    <div><strong>מס' הזמנה:</strong> {order.order_id}</div>
+                    <div><strong>מס' לקוח:</strong> {order.client_id}</div>
+                    <div>
+                      <strong>תאריך הזמנה:</strong>{" "}
+                      {new Date(order.order_date).toLocaleDateString("he-IL")}
+                    </div>
+                    <div>
+                      <strong>תאריך אספקה:</strong>{" "}
+                      {new Date(order.delivery_date).toLocaleDateString("he-IL")}
+                    </div>
+                    <div><strong>ביקורת על ההזמנה:</strong> {order.praises}</div>
+                    <div><strong>כמות מדבקות:</strong> {order.sticker_quantity}</div>
+                    <div>
+                      <strong>סוג חומר:</strong>{" "}
+                      {materialsMap[order.materials_id] || "לא ידוע"}
+                    </div>
+                    <button onClick={() => setEditingId(order.order_id)}>ערוך</button>
+                    <button onClick={() => deleteOrder(order.order_id)}>מחק</button>
+                  </>
+                )}
               </li>
-              
             ))}
           </ul>
         )}
@@ -60,6 +63,5 @@ const OrderList: React.FC = () => {
     </div>
   );
 };
-
 
 export default OrderList;

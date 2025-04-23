@@ -48,4 +48,5 @@ export const fetchOrdersByClient: RequestHandler = async (req, res) => {
             error: (error as Error).message
         });
     }
+
 }

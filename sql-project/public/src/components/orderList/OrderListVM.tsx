@@ -7,13 +7,13 @@ interface OrderFormData {
   order_date: string;
   delivery_date: string;
   praises: string;
-  knives_id: string;
-  engravings_id: string;
-  sticker_id: string;
-  arrival_date: string;
   sticker_quantity: string;
-  knives_quantity: string;
-  materials_type: string;
+  materials_id: string; 
+  knives_id?: string;
+  engravings_id?: string;
+  sticker_id?: string;
+  arrival_date?: string;
+  knives_quantity?: string;
 }
 
 const useOrderListVM = () => {
@@ -52,7 +52,7 @@ const useOrderListVM = () => {
 
   const deleteOrder = async (orderId: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/main/deleteOrder/${orderId}`,{
+      const response = await fetch(`http://localhost:3000/main/deleteOrderByClient/${orderId}`, {
         method: "DELETE",
         credentials: 'include'
       });
@@ -61,6 +61,31 @@ const useOrderListVM = () => {
       console.log("Order deleted successfully");
     } catch (err) {
       console.error("Error deleting order:", err);
+    }
+  };
+
+
+  const updateOrder = async (updatedOrder: OrderFormData) => {
+    try {
+      const response = await fetch(`http://localhost:3000/main/updateOrder/${updatedOrder.order_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(updatedOrder),
+      });
+  
+      if (!response.ok) throw new Error("שגיאה בעדכון ההזמנה");
+  
+      // עדכון רשימת ההזמנות בזיכרון (ב-View)
+      setFormData((prev) =>
+        prev.map((order) =>
+          order.order_id === updatedOrder.order_id ? updatedOrder : order
+        )
+      );
+    } catch (err) {
+      console.error("שגיאה בעדכון:", err);
     }
   };
 
@@ -77,7 +102,8 @@ const useOrderListVM = () => {
     //handleInputChange,
     // handleSubmit,
     handleBackClick,
-      deleteOrder
+      deleteOrder,
+    updateOrder
     };
   };
 

@@ -3,19 +3,21 @@ import { pool } from "../models/db";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
   throw new Error("JWT_SECRET is not defined in .env");
 }
-export const register = async (req: Request, res: Response): Promise<Response | any> => {
+
+export const register = async (req: Request, res: Response): Promise<Response> => {
   const {
     client_name,
     client_email,
     client_password,
     client_entry_date,
-    client_phone,
+    client_phone
   } = req.body;
 
   console.log("📥 BODY (register):", req.body);
@@ -30,19 +32,12 @@ export const register = async (req: Request, res: Response): Promise<Response | 
         client_entry_date, client_phone
       ) VALUES (?, ?, ?, ?, ?)
     `;
-    const values = [
-      client_name,
-      client_email,
-      hashed,
-      client_entry_date,
-      client_phone,
-    ];
+    const values = [client_name, client_email, hashed, client_entry_date, client_phone];
 
     console.log("📤 Executing SQL:", sql);
     console.log("📤 With values:", values);
 
     const [result]: any = await pool.execute(sql, values);
-
     console.log("✅ Insert result:", result);
 
     const token = jwt.sign(
@@ -51,17 +46,10 @@ export const register = async (req: Request, res: Response): Promise<Response | 
       { expiresIn: "7d" }
     );
 
-    const user = jwt.sign(
-      { client_id: result.insertId, client_email },
-      JWT_SECRET,
-      { expiresIn: "7d" }
-    );
-
     console.log("🔑 Token generated:", token);
 
-    res
+    return res
       .cookie("token", token, { httpOnly: true, sameSite: "strict" })
-      .cookie("user", user, { httpOnly: true, sameSite: "strict" })
       .status(201)
       .json({ message: "Client registered successfully" });
 
@@ -72,11 +60,11 @@ export const register = async (req: Request, res: Response): Promise<Response | 
       return res.status(400).json({ message: "Email already exists" });
     }
 
-    res.status(500).json({ message: "Registration failed", error: err.message });
+    return res.status(500).json({ message: "Registration failed", error: err.message });
   }
 };
 
-export const login = async (req: Request, res: Response): Promise<any> => {
+export const login = async (req: Request, res: Response): Promise<Response> => {
   const { client_email, client_password } = req.body;
   console.log("📥 BODY (login):", req.body);
 
@@ -86,9 +74,9 @@ export const login = async (req: Request, res: Response): Promise<any> => {
       [client_email]
     );
 
-    console.log("🔎 Found client:", rows[0]);
-
     const client = rows[0];
+    console.log("🔎 Found client:", client);
+
     if (!client) {
       return res.status(401).json({ message: "Client not found" });
     }
@@ -108,17 +96,18 @@ export const login = async (req: Request, res: Response): Promise<any> => {
 
     console.log("🔑 Token generated:", token);
 
-    res
+    return res
       .cookie("token", token, { httpOnly: true, sameSite: "strict" })
+      .status(200)
       .json({ message: "Login successful" });
 
   } catch (err: any) {
     console.error("❌ LOGIN ERROR:", err);
-    res.status(500).json({ message: "Login failed", error: err.message });
+    return res.status(500).json({ message: "Login failed", error: err.message });
   }
 };
 
-export const getCurrentUser = (req: Request, res: Response): any => {
+export const getCurrentUser = (req: Request, res: Response): Response => {
   try {
     const token = req.cookies.token;
     console.log("🔍 Token (getCurrentUser):", token);
@@ -134,18 +123,18 @@ export const getCurrentUser = (req: Request, res: Response): any => {
 
     console.log("✅ Decoded token:", decoded);
 
-    res.status(200).json({
+    return res.status(200).json({
       client_id: decoded.client_id,
       client_email: decoded.client_email
     });
 
   } catch (error) {
     console.error("❌ GET CURRENT USER ERROR:", error);
-    res.status(401).json({ message: "Invalid token" });
+    return res.status(401).json({ message: "Invalid token" });
   }
 };
 
-export const logout = (req: Request, res: Response) => {
+export const logout = (req: Request, res: Response): Response => {
   console.log("🚪 Logging out");
-  res.clearCookie("token").status(200).json({ message: "Logged out successfully" });
+  return res.clearCookie("token").status(200).json({ message: "Logged out successfully" });
 };
