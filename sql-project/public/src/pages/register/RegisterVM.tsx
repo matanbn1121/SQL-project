@@ -49,11 +49,6 @@ export function useRegisterVM() {
     }
   }
 
-  function handleBackClick() {
-    navigate("/");
-  }
-
-
   return {
     firstName, setFirstName,
     lastName, setLastName,

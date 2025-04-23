@@ -12,7 +12,7 @@ export const updateOrder = async (req: Request, res: Response) => {
     delivery_date,
     praises,
     sticker_quantity,
-    materials_type,
+    materials_id,
   } = req.body;
 
   try {
@@ -32,7 +32,7 @@ export const updateOrder = async (req: Request, res: Response) => {
       fixDate(delivery_date),
       praises,
       sticker_quantity,
-      materials_type,
+      materials_id, 
       order_id,
     ];
 

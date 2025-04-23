@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import styles from "./orderList.module.scss";
 import useOrderListVM from "./OrderListVM";
-import EditOrderForm from "../../components/EditOrder/EditOrder"; // ודא שזה הנתיב הנכון אצלך
+import EditOrderForm from "../../components/EditOrder/EditOrder";
+
+const materialsMap: Record<string, string> = {
+  "1": "Paper",
+  "2": "Plastic",
+  "3": "Metal"
+};
 
 const OrderList: React.FC = () => {
   const { formData, deleteOrder, updateOrder } = useOrderListVM();
@@ -19,14 +25,14 @@ const OrderList: React.FC = () => {
             {formData.map((order) => (
               <li key={order.order_id} className={styles.orderItem}>
                 {editingId === order.order_id ? (
-          <EditOrderForm
-          order={order}
-          onCancel={() => setEditingId(null)}
-          onSave={(updatedOrder) => {
-            updateOrder(updatedOrder); 
-            setEditingId(null);
-          }}
-        />
+                  <EditOrderForm
+                    order={order}
+                    onCancel={() => setEditingId(null)}
+                    onSave={(updatedOrder) => {
+                      updateOrder(updatedOrder);
+                      setEditingId(null);
+                    }}
+                  />
                 ) : (
                   <>
                     <div><strong>מס' הזמנה:</strong> {order.order_id}</div>
@@ -41,7 +47,10 @@ const OrderList: React.FC = () => {
                     </div>
                     <div><strong>ביקורת על ההזמנה:</strong> {order.praises}</div>
                     <div><strong>כמות מדבקות:</strong> {order.sticker_quantity}</div>
-                    <div><strong>סוג חומר:</strong> {order.materials_type}</div>
+                    <div>
+                      <strong>סוג חומר:</strong>{" "}
+                      {materialsMap[order.materials_id] || "לא ידוע"}
+                    </div>
                     <button onClick={() => setEditingId(order.order_id)}>ערוך</button>
                     <button onClick={() => deleteOrder(order.order_id)}>מחק</button>
                   </>

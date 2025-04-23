@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./EditOrder.module.scss"; // ודא שהקובץ הזה קיים
+import styles from "./EditOrder.module.scss";
 
 interface OrderFormData {
   order_id: string;
@@ -8,12 +8,7 @@ interface OrderFormData {
   delivery_date: string;
   praises: string;
   sticker_quantity: string;
-  materials_type: string;
-  knives_id?: string;
-  engravings_id?: string;
-  sticker_id?: string;
-  arrival_date?: string;
-  knives_quantity?: string;
+  materials_id: string; // 🟢 שם מתוקן
 }
 
 interface Props {
@@ -25,7 +20,7 @@ interface Props {
 const EditOrderForm = ({ order, onCancel, onSave }: Props) => {
   const [formData, setFormData] = useState<OrderFormData>(order);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
@@ -73,11 +68,16 @@ const EditOrderForm = ({ order, onCancel, onSave }: Props) => {
       </div>
       <div className={styles.formGroup}>
         <label>סוג חומר:</label>
-        <input
-          name="materials_type"
-          value={formData.materials_type}
+        <select
+          name="materials_id"
+          value={formData.materials_id}
           onChange={handleChange}
-        />
+        >
+          <option value="">בחר חומר</option>
+          <option value="1">Paper</option>
+          <option value="2">Plastic</option>
+          <option value="3">Metal</option>
+        </select>
       </div>
       <div className={styles.buttonGroup}>
         <button type="submit" className={styles.saveButton}>שמור</button>

@@ -8,8 +8,8 @@ interface OrderFormData {
   delivery_date: string;
   praises: string;
   sticker_quantity: string;
-  materials_type: string;
-  knives_id?: string; 
+  materials_id: string; 
+  knives_id?: string;
   engravings_id?: string;
   sticker_id?: string;
   arrival_date?: string;
