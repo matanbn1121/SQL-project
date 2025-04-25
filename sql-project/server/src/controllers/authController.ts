@@ -11,13 +11,14 @@ if (!JWT_SECRET) {
   throw new Error("JWT_SECRET is not defined in .env");
 }
 
-export const register = async (req: Request, res: Response): Promise<Response> => {
+export const register = async (req: Request, res: Response): Promise<any> => {
   const {
     client_name,
     client_email,
     client_password,
     client_entry_date,
-    client_phone
+    client_phone,
+     
   } = req.body;
 
   console.log("📥 BODY (register):", req.body);
@@ -27,12 +28,12 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     console.log("🔐 Hashed password:", hashed);
 
     const sql = `
-      INSERT INTO clients (
-        client_name, client_email, client_password,
-        client_entry_date, client_phone
-      ) VALUES (?, ?, ?, ?, ?)
-    `;
-    const values = [client_name, client_email, hashed, client_entry_date, client_phone];
+    INSERT INTO clients (
+      client_name, client_email, client_password,
+      client_entry_date, client_phone
+    ) VALUES (?, ?, ?, ?, ?)`;
+  
+  const values = [client_name, client_email, hashed, client_entry_date, client_phone];
 
     console.log("📤 Executing SQL:", sql);
     console.log("📤 With values:", values);
@@ -64,7 +65,7 @@ export const register = async (req: Request, res: Response): Promise<Response> =
   }
 };
 
-export const login = async (req: Request, res: Response): Promise<Response> => {
+export const login = async (req: Request, res: Response): Promise<any> => {
   const { client_email, client_password } = req.body;
   console.log("📥 BODY (login):", req.body);
 
@@ -107,7 +108,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
   }
 };
 
-export const getCurrentUser = (req: Request, res: Response): Response => {
+export const getCurrentUser = (req: Request, res: Response): any => {
   try {
     const token = req.cookies.token;
     console.log("🔍 Token (getCurrentUser):", token);
@@ -134,7 +135,7 @@ export const getCurrentUser = (req: Request, res: Response): Response => {
   }
 };
 
-export const logout = (req: Request, res: Response): Response => {
+export const logout = (req: Request, res: Response): any => {
   console.log("🚪 Logging out");
   return res.clearCookie("token").status(200).json({ message: "Logged out successfully" });
 };

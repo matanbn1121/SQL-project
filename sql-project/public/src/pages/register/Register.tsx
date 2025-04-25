@@ -8,7 +8,6 @@ function Register() {
     firstName, setFirstName,
     lastName, setLastName,
     companyName, setCompanyName,
-    address, setAddress,
     phone, setPhone,
     email, setEmail,
     password, setPassword,
@@ -27,7 +26,6 @@ function Register() {
           <input type="text" placeholder="שם פרטי" required value={firstName} onChange={(e) => setFirstName(e.target.value)} className={styles.input} />
           <input type="text" placeholder="שם משפחה" required value={lastName} onChange={(e) => setLastName(e.target.value)} className={styles.input} />
           <input type="text" placeholder="שם החברה" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className={styles.input} />
-          <input type="text" placeholder="כתובת" required value={address} onChange={(e) => setAddress(e.target.value)} className={styles.input} />
           <input type="text" placeholder="טלפון" required value={phone} onChange={(e) => setPhone(e.target.value)} className={styles.input} />
           <input type="email" placeholder="אימייל" required value={email} onChange={(e) => setEmail(e.target.value)} className={styles.input} />
           <input type="password" placeholder="סיסמה" required value={password} onChange={(e) => setPassword(e.target.value)} className={styles.input} />

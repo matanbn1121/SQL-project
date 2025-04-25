@@ -6,7 +6,6 @@ export function useRegisterVM() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,7 +51,6 @@ export function useRegisterVM() {
     firstName, setFirstName,
     lastName, setLastName,
     companyName, setCompanyName,
-    address, setAddress,
     phone, setPhone,
     email, setEmail,
     password, setPassword,
